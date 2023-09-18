@@ -34,29 +34,20 @@ const lookup = {
 function rot13(encodedStr) {
   let decodedArr = []; // Your Result goes here
   // Only change code below this line
-	function rot13(str) {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const shift = 13;
-  let decoded = '';
+	for (let i = 0; i < encodedStr.length; i++) {
+    const char = encodedStr.charAt(i);
 
-  for (let i = 0; i < str.length; i++) {
-    const char = str[i];
-    const index = alphabet.indexOf(char);
-
-    if (index === -1) {
-      // Non-alphabetic character
-      decoded += char;
+    // Check if the character is in the lookup table
+    if (lookup[char] !== undefined) {
+      decodedArr.push(lookup[char]); // Append the decoded character
     } else {
-      // Alphabetic character
-      const shiftedIndex = (index + shift) % alphabet.length;
-      decoded += alphabet[shiftedIndex];
+      decodedArr.push(char); // Non-alphabetic characters are passed through as is
     }
   }
 
-  return decoded;
-}
+  return decodedArr.join(''); 
 
-  return; //return decodedArr
+   //return decodedArr
 }
 
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
